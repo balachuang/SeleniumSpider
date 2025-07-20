@@ -30,6 +30,11 @@ download:
   default-page-name: index.html
   stop-on-fail: false
   # Selenium 可以設定 cookie, 但是只能指定 name=value, 不能指定其他參數, 如 expired, path, domain 等.
+  # 原因是這些參數被 Selenium 固定: expire=n/a, path=/, domain=目前 domain
+  # 所以如果要設 cookie, 要先預先連到同網址中另一個不需要 cookie 的頁面, 設好 cookie 後再連到目標頁面
+  cookie-define-url:
+    - https://www.ccsh.tp.edu.tw/guide/
+    - https://stackoverflow.com/questions/45842709/unable-to-set-cookies-in-selenium-webdriver
   cookies:
     token-1: Bala Chuang
     token-2: ZJCHUANG

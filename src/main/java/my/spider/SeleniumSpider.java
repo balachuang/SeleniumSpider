@@ -59,6 +59,9 @@ public class SeleniumSpider implements CommandLineRunner
 		driver = new ChromeDriver();
 		downloadRootPath = getRootPath();
 
+		// set cookies
+		setBrowserCookies();
+
 		// put start-pages into download queue
 		for (String webUrl : downloadConfig.getWebStartUrl())
 		{
@@ -98,8 +101,7 @@ public class SeleniumSpider implements CommandLineRunner
 	{
 		// 開啟 url 並取得原始碼 ==> page only
 		logger.info("Navigate to: {}", url.toString());
-		// driver.get(url.toString());
-		navigateTo(url.toString());
+		driver.get(url.toString());
 
 		// URL urlObj = null;
 		List<WebElement> tagElems = null;
@@ -209,13 +211,15 @@ public class SeleniumSpider implements CommandLineRunner
 		return rp;
 	}
 
-	private void navigateTo(String url)
+	private void setBrowserCookies()
 	{
 		Map<String, String> cookies = downloadConfig.getCookies();
+		if (cookies.size() <= 0) return;
 
-		driver.get(url);
-		if (cookies.size() > 0)
+		for (String url : downloadConfig.getCookieDefineUrl())
 		{
+			driver.get(url);
+
 			Iterator<String> itor = cookies.keySet().iterator();
 			while(itor.hasNext())
 			{

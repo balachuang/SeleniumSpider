@@ -14,6 +14,7 @@ public class DownloadConfig
 {
 	private String[] webStartUrl;
 	private String[] limitUrl;
+	private String[] cookieDefineUrl;
 	private String outputLocalPath;
 	private String defaultPageName;
 	private int limitLevel;
