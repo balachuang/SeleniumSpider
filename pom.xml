@@ -51,7 +51,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<mainClass>bala.tools.SeleniumSpiderApplication</mainClass>
+					<mainClass>my.spider.SeleniumSpiderApplication</mainClass>
 				</configuration>
 			</plugin>
 		</plugins>

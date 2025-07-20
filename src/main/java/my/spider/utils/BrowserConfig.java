@@ -1,6 +1,6 @@
 package my.spider.utils;
 
-import java.util.Map;
+// import java.util.Map;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -17,5 +17,5 @@ public class BrowserConfig
 	private long globalTimeout;
 	private long scriptTimeout;
 	private long pageTimeout;
-	private Map<String, String> cookies;
+	// private Map<String, String> cookies;
 }

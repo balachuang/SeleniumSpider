@@ -4,20 +4,19 @@
 
 logging:
   level:
-    root: INFO
+    root: info
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
     file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
   file.name: logs/spider.log
 
+# 這個其實用不到
 browser:
   driver: Chrome
   timeout:
     global: 60
     script: 60
     pageLoad: 60
-  cookies:
-    name: value
 
 
 download:
@@ -30,3 +29,7 @@ download:
   convert-hyperlink: true
   default-page-name: index.html
   stop-on-fail: false
+  # Selenium 可以設定 cookie, 但是只能指定 name=value, 不能指定其他參數, 如 expired, path, domain 等.
+  cookies:
+    token-1: Bala Chuang
+    token-2: ZJCHUANG

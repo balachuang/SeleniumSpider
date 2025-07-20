@@ -1,5 +1,7 @@
 package my.spider.utils;
 
+import java.util.Map;
+
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import lombok.Data;
@@ -17,4 +19,5 @@ public class DownloadConfig
 	private int limitLevel;
 	private boolean convertHyperlink;
 	private boolean stopOnFail;
+	private Map<String, String> cookies;
 }

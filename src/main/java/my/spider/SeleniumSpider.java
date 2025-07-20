@@ -7,6 +7,7 @@ import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -97,7 +98,8 @@ public class SeleniumSpider implements CommandLineRunner
 	{
 		// 開啟 url 並取得原始碼 ==> page only
 		logger.info("Navigate to: {}", url.toString());
-		driver.get(url.toString());
+		// driver.get(url.toString());
+		navigateTo(url.toString());
 
 		// URL urlObj = null;
 		List<WebElement> tagElems = null;
@@ -205,6 +207,23 @@ public class SeleniumSpider implements CommandLineRunner
 		String rp = downloadConfig.getOutputLocalPath().trim().replaceAll("/", "\\");
 		rp = StringUtils.trimTrailingCharacter(rp, '\\');
 		return rp;
+	}
+
+	private void navigateTo(String url)
+	{
+		Map<String, String> cookies = downloadConfig.getCookies();
+
+		driver.get(url);
+		if (cookies.size() > 0)
+		{
+			Iterator<String> itor = cookies.keySet().iterator();
+			while(itor.hasNext())
+			{
+				String cookieName = itor.next();
+				String cookieValue = cookies.get(cookieName);
+				driver.manage().addCookie(new Cookie(cookieName, cookieValue));
+			}
+		}
 	}
 
 	private boolean isMatchUrLimitation(String urlStr, int level)
